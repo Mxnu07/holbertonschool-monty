@@ -8,8 +8,6 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#define NO_OF_INSTRUCTIONS 7
-
 /**
  * struct tack_m - doubly linked list representation of a stack (or queue)
  * @n: integer
