@@ -7,6 +7,6 @@
  */
 void nop(stack_t **stack, unsigned int line_number)
 {
-    (void)stack; // Avoid unused variable warning
-    (void)line_number; // Avoid unused variable warning
+	(void)stack;
+	(void)line_number;
 }
