@@ -1,42 +1,72 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "monty.h"
+
 /**
- * _push - Pushes An Element To The Stack.
- * @Node: Stack
- * @**top: Double pointer to top of stack
- * Return: Void
+ * push - Pushes an integer onto the stack.
+ * @stack: Pointer to the stack.
+ * @line_number: Line number where the push function is called.
  */
-typedef struct Node {
-    int data;
-    struct Node *next;
-} Node;
 
-void _push(Node **top, int value) 
+void push(stack_t **stack, unsigned int line_number)
 {
-    intvalue = atoi(value)
-    Node *newNode = malloc(sizeof(Node));
-    if (newNode == NULL) {
-        fprintf(stderr, "Memory allocation failed\n");
-        exit(EXIT_FAILURE);
-    }
+	if (argument->n_tokens <= 1 || !(is_number(argument->line_strs[1])))
+	{
+		free_arg();
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 
-    newNode->data = intvalue;
-    newNode->next = *top;
-    *top = newNode;
+	*stack = malloc(sizeof(stack_t));
+	if (*stack == NULL)
+		malloc_failed();
+	(*stack)->next = (*stack)->prev = NULL;
+
+	(*stack)->n = (int) atoi(argument->line_strs[1]);
+
+	if (argument->stackHead == NULL)
+	{
+		argument->stackHead = *stack;
+	}
+	else
+	{
+		if (argument->stack)
+		{
+			(*stack)->next = argument->stackHead;
+			argument->stackHead->prev = *stack;
+			argument->stackHead = *stack;
+		}
+		else
+		{
+			stack_t *tmp = argument->stackHead;
+
+			while (tmp->next)
+				tmp = tmp->next;
+			tmp->next = *stack;
+			(*stack)->prev = tmp;
+		}
+	}
+	argument->stack_length += 1;
 }
-/**
- * _pall - Prints all the values on the stack.
- * @stack: Pointer to the head of the stack.
- * @line_number: The line number.
- */
-void _pall(stack_t **stack, unsigned int line_number)
-{
-    stack_t *current = *stack; // Start from the top of the stack
 
-    while (current != NULL)
-    {
-        printf("%d\n", current->n); // Print the value of the current node
-        current = current->next;      // Move to the next node
-    }
+/**
+ * pall - Prints all the elements in the stack.
+ * @stack: Pointer to the stack.
+ * @line_number: Line number where the pall function is called.
+ */
+
+void pall(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp;
+
+	if (argument->stackHead == NULL)
+		return;
+
+	(void) line_number;
+	(void) stack;
+
+	tmp = argument->stackHead;
+	while (tmp != NULL)
+	{
+		printf("%d\n", tmp->n);
+		tmp = tmp->next;
+	}
 }

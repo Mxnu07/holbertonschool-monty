@@ -2,7 +2,13 @@
 #define MONTY_H
 
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
+#include <stddef.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+#define NO_OF_INSTRUCTIONS 7
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -34,10 +40,56 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+ * struct argument_s - struct to help pass arguments around
+ *
+ */
+typedef struct argument_s
+{
+	char **line_strs; /* used to store tokens from line */
+	char *line; /* used for getting line from file */
+	unsigned int line_number; /* for tracking current line number */
+	instruction_t *instruction; /* a valid instruction from a line */
+	int n_tokens; /* number of tokens created from line */
+	int isComment; /* tracks whether or not tokens start with # */
+	FILE *stream; /* file stream */
+	int stack_length; /* tracks the number of nodes in the stack */
+	stack_t *stackHead; /* head/top of the stack (doubly linked lists of struct stack_s) */
+	int stack; /* for switching between the use of stack and queue */
+} argument_t;
 
-void pop_(stack_t **stack, unsigned int line_number);
-void add_(stack_t **stack, unsigned int line_number);
-void swap_(stack_t **stack, unsigned int line_number);
-void nop_(stack_t **stack, unsigned int line_number);
+FILE *fdopen(int fd, const char *mode);
+ssize_t getline(char **lineptr, size_t *n, FILE *stream);
 
-#endif
+extern argument_t *argument;
+
+void push(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
+void nop(stack_t **stack, unsigned int line_number);
+void check_num_of_arguments(int argc);
+void read_failed(char *fileName);
+void malloc_failed(void);
+void free_all_args(void);
+void free_arg(void);
+void free_toks(void);
+void free_stack(stack_t *head);
+void delete_stack_node(void);
+void closeStream(void);
+void setStream(char *fileName);
+void setInstruction(void);
+void invalid_instruction(void);
+void runInstruction(void);
+void free_stackHead(void);
+void tokenize(void);
+void init_arg(void);
+
+
+int is_comment();
+int is_number(char *str);
+
+
+#endif /* MONTY_H */
