@@ -1,25 +1,19 @@
-
-Monty ByteCode Interpreter
-Description
+# Monty ByteCode Interpreter
 Monty 0.98 is a scripting language that is first compiled into Monty byte codes, similar to Python. This project involves creating an interpreter for Monty ByteCodes files in the C programming language.
 
-Compilation & Output
-Compile the code with:
-bash
-
+## Compilation & Output
+Compile the code with: 
 $ gcc -Wall -Werror -Wextra -pedantic *.c -o monty
 Any output must be printed on stdout, and any error message must be printed on stderr.
 
-Monty Program Usage
-bash
-
+## Monty Program Usage
 $ ./monty file
 * If no file or more than one argument is given, print USAGE: monty file and exit with EXIT_FAILURE.
 * If it's not possible to open the file, print Error: Can't open file <file> and exit with EXIT_FAILURE.
 * If the file contains an invalid instruction, print L<line_number>: unknown instruction <opcode> and exit with EXIT_FAILURE.
 * If unable to malloc, print Error: malloc failed and exit with EXIT_FAILURE.
 
-Opcodes
+## Opcodes
 1. push, pall
 push
 The push opcode pushes an element onto the stack.
@@ -55,8 +49,8 @@ nop
 The nop opcode does nothing.
 Usage: nop
 
-Repository
+## Repository
 GitHub Repository: holbertonschool-monty
 
-AUTHORS
-Leandro Pagani  & Manuel Morales
+## AUTHORS
+Leandro Pagani & Manuel Morales
