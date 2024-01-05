@@ -88,8 +88,7 @@ void tokenize(void);
 void init_arg(void);
 
 
-int is_comment();
+int is_comment(void);
 int is_number(char *str);
-
 
 #endif
