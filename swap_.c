@@ -21,9 +21,6 @@ void swap_(stack_t **stack, unsigned int line_number)
     second->next = top; // Update 'second' to point to 'top' as its next element
     second->prev = NULL; // Since 'second' is now at the top, its previous element is NULL
 
-
-    // No need to check if (top->next != NULL) here, as it's ensured by the initial check
-
     top->next->prev = top; // Update the previous pointer of the element after 'top' to point to 'top'
 
     *stack = second; // Update the double pointer 'stack' to point to 'second', as 'second' is now at the top of the stack
