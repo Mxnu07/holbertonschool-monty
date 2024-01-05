@@ -92,4 +92,4 @@ int is_comment();
 int is_number(char *str);
 
 
-#endif /* MONTY_H */
+#endif
