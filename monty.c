@@ -8,7 +8,7 @@
  *
  * Return: returns 0 (Success)
  */
-int main(int argc, char **argv[])
+int main(int argc, char **argv)
 {
 	ssize_t lines_read = 0;
 	size_t n = 0;
@@ -21,6 +21,13 @@ int main(int argc, char **argv[])
 
 	init_arg();
 	setStream(argv[1]);
+
+	 if (argument->stream == NULL)
+    {
+        fprintf(stderr, "Error: Couldn't open file %s\n", argv[1]);
+        free_arg();
+        exit(EXIT_FAILURE);
+    }
 
 	while ((lines_read = getline(&argument->line, &n, argument->stream)) != -1)
 	{
