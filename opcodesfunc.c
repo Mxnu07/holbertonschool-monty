@@ -25,3 +25,18 @@ void _push(Node **top, int value)
     newNode->next = *top;
     *top = newNode;
 }
+/**
+ * _pall - Prints all the values on the stack.
+ * @stack: Pointer to the head of the stack.
+ * @line_number: The line number.
+ */
+void _pall(stack_t **stack, unsigned int line_number)
+{
+    stack_t *current = *stack; // Start from the top of the stack
+
+    while (current != NULL)
+    {
+        printf("%d\n", current->n); // Print the value of the current node
+        current = current->next;      // Move to the next node
+    }
+}
