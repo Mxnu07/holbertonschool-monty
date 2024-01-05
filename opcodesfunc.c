@@ -70,7 +70,6 @@ void pall(stack_t **stack, unsigned int line_number)
 		tmp = tmp->next;
 	}
 }
-#include "monty.h"
 
 /**
  * pint - Prints the value at the top of the stack.
