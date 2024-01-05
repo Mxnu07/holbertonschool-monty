@@ -17,11 +17,11 @@
  * Description: doubly linked list node structure
  * for stack, queues, LIFO, FIFO
  */
-typedef struct stack_m
+typedef struct stack_s
 {
         int n;
-        struct stack_m *prev;
-        struct stack_m *next;
+        struct stack_s *prev;
+        struct stack_s *next;
 } stack_t;
 
 /**
