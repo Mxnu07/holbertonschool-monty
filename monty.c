@@ -24,12 +24,12 @@ int main(int argc, char **argv)
 	init_arg();
 	setStream(argv[1]);
 
-	 if (argument->stream == NULL)
-    {
-        fprintf(stderr, "Error: Couldn't open file %s\n", argv[1]);
-        free_arg();
-        exit(EXIT_FAILURE);
-    }
+	if (argument->stream == NULL)
+	{
+		fprintf(stderr, "Error: Couldn't open file %s\n", argv[1]);
+		free_arg();
+		exit(EXIT_FAILURE);
+	}
 
 	while ((lines_read = getline(&argument->line, &n, argument->stream)) != -1)
 	{
